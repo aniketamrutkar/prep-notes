@@ -84,6 +84,6 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin || !url.pathname.startsWith(ROOT)) return;
   const rel = url.pathname.slice(ROOT.length);
-  if (rel === 'sw.js' || rel.startsWith('_enc/')) return;
+  if (rel === 'sw.js' || rel.startsWith('_enc/') || ['manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'].includes(rel)) return;
   e.respondWith(serve(e.request, url));
 });
